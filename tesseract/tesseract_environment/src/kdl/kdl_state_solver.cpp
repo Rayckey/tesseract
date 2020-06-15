@@ -228,7 +228,19 @@ void KDLStateSolver::calculateTransformsHelper(EnvState& state,
   if (it != kdl_tree_.getSegments().end())
   {
     const KDL::TreeElementType& current_element = it->second;
-    KDL::Frame current_frame = GetTreeElementSegment(current_element).pose(q_in(GetTreeElementQNr(current_element)));
+
+    auto qnr = joint_to_qnr_.find(current_element.segment.getJoint().getName());
+    unsigned int joint_idx = 0;
+    if (qnr == joint_to_qnr_.end())
+    {
+      // ROS_ERROR("Cannot find joint %s for link %s.",current_element.segment.getJoint().getName().c_str(), current_element.segment.getName().c_str());
+      joint_idx = GetTreeElementQNr(current_element);
+    }
+    else{
+      joint_idx = qnr->second;
+    }
+
+    KDL::Frame current_frame = GetTreeElementSegment(current_element).pose(q_in(joint_idx));
 
     Eigen::Isometry3d local_frame, global_frame;
     KDLToEigen(current_frame, local_frame);
