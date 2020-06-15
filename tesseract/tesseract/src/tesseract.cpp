@@ -553,10 +553,28 @@ void Tesseract::clear()
   environment_ = nullptr;
   environment_const_ = nullptr;
   srdf_model_ = nullptr;
-  srdf_model_const_ = nullptr;
   inv_kin_manager_ = nullptr;
-  inv_kin_manager_const_ = nullptr;
+  fwd_kin_manager_ = nullptr;
+}
+
+// void Tesseract::clear()
+// {
+//   initialized_ = false;
+//   environment_ = nullptr;
+//   environment_const_ = nullptr;
+//   srdf_model_ = nullptr;
+//   srdf_model_const_ = nullptr;
+//   inv_kin_manager_ = nullptr;
+//   inv_kin_manager_const_ = nullptr;
+//   fwd_kin_manager_ = nullptr;
+//   fwd_kin_manager_const_ = nullptr;
+// }
+
+void Tesseract::clearKinematics()
+{
+  inv_kin_manager_ = nullptr;
   fwd_kin_manager_ = nullptr;
   fwd_kin_manager_const_ = nullptr;
+  inv_kin_manager_const_ = nullptr;
 }
 }  // namespace tesseract

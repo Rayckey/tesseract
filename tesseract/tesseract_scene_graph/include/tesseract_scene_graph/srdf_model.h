@@ -113,6 +113,20 @@ public:
   /** @brief Clear the model */
   void clear();
 
+  void addGroup(std::string group_name, std::vector<std::pair<std::string, std::string>> chain_group) 
+  {
+    chain_groups_[group_name] = chain_group;
+  }
+
+  void removeGroup(const std::string &group_id)
+  {
+    auto cg = chain_groups_.find(group_id);
+    if (cg != chain_groups_.end())
+    {
+      chain_groups_.erase(group_id);
+    }
+  }
+
 private:
   std::string name_{ "undefined" };           /**< @brief The name of the srdf model */
   std::array<int, 3> version_{ { 1, 0, 0 } }; /**< @brief The version number major.minor[.patch] */

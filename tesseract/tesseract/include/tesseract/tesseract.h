@@ -98,6 +98,11 @@ public:
   void setResourceLocator(tesseract_scene_graph::ResourceLocator::Ptr locator);
   const tesseract_scene_graph::ResourceLocator::Ptr& getResourceLocator() const;
 
+  bool registerDefaultContactManagers();
+  bool registerDefaultInvKinSolvers();
+  bool registerDefaultFwdKinSolvers();
+  void clearKinematics();
+
 private:
   bool initialized_;
   tesseract_environment::Environment::Ptr environment_;
@@ -110,9 +115,7 @@ private:
   InverseKinematicsManager::ConstPtr inv_kin_manager_const_;
   TesseractInitInfo::Ptr init_info_;
 
-  bool registerDefaultContactManagers();
-  bool registerDefaultInvKinSolvers();
-  bool registerDefaultFwdKinSolvers();
+
 
   void clear();
 };

@@ -160,6 +160,9 @@ public:
    */
   Link::ConstPtr getLink(const std::string& name) const;
 
+  Link::Ptr getEditableLink(const std::string& name);
+
+
   /**
    * @brief Get a vector links in the scene graph
    * @return A vector of links
